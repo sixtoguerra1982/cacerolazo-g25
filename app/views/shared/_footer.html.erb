@@ -21,6 +21,7 @@
 	
 $(document).ready(function(){
 	  dimensionar();
+	  document.getElementById('close-footer').addEventListener('click',alerta,false);
     
     function dimensionar(){
       
@@ -31,7 +32,6 @@ $(document).ready(function(){
       
 		};	
 
-	  document.getElementById('close-footer').addEventListener('click',alerta,false);
 
 	  function alerta() {
 	  	$('footer').hide("slow");

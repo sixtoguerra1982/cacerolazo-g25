@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users, :skip =>  [:registrations], controllers:{
-  	omniauth_callbacks: 'users/omniauth_callbacks'
-  }
+ 
+  devise_for :users
+  
   resources :eventos
   post 'evento/:id', to: 'eventos#delete_image', as: 'delete_image'
   get 'home/index'

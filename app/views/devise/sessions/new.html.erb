@@ -1,9 +1,12 @@
 <div class="container">
   <h2>Log in</h2>
-   <a ><div class="btn-floating btn-large cyan pulse" id="openform">
-      <i class="material-icons" id="iconoopenform">arrow_drop_down</i>
-   </div> 
-   </a>
+  <% if false %>
+     <a>
+      <div class="btn-floating btn-large cyan pulse" id="openform">
+        <i class="material-icons" id="iconoopenform">arrow_drop_down</i>
+      </div> 
+     </a>
+  <% end %>
   <div id="new_user_form">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field">
@@ -30,10 +33,10 @@
 
     <%= render "devise/shared/links" %>
   </div>
-  <div class="row">
+  <div class="row" style="display:none;">
     <div class="col offset-s1 s10">
       <label for="boton_facebook">Continuar con</label>
-      <a class="boton_facebook" href="<%= user_facebook_omniauth_authorize_path %>" id="boton_facebook"><i class="fab fa-facebook-square fa-2x"></i>&nbsp;Facebook</a>
+      <a class="boton_facebook" href="<%= root_path %>" id="boton_facebook"><i class="fab fa-facebook-square fa-2x"></i>&nbsp;Facebook</a>
       <p class="center">OllaGuerrasoft Nunca publicará nada en tus canales sociales</p>
     </div>
   </div>
@@ -42,7 +45,7 @@
 
 <script>
   $(document).ready(function(){
-      document.getElementById('openform').addEventListener('click',openform,false);
+      
     });
   var sw = false;
   function openform() {
