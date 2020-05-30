@@ -103,7 +103,7 @@
        		<p><%= @cantidad %><%= @cantidad == 1 ? ' Registro encontrado' : ' Registros encontrados' %><%= " en la Region #{ @region.nombre }" %> </p>
        	</div>
     <% end %>
-	<%= render 'shared/eventos' , evento: nil %>
+	<%= @eventos.present? ? render('shared/eventos') : '<h1>No Contamos con Registros por el momento</h1>'.html_safe %>
 </section>
 
  <script>
