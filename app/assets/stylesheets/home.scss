@@ -30,3 +30,24 @@
 	}
 
 }
+
+
+.link_new_user_session {
+  color: #26a69a;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-bottom: 1px solid black;
+}
+
+.link_new_user_session:hover {
+  text-decoration: underline;
+  border: none;
+}
+
+.link_new_user_session:active {
+  color: black;
+}
+
+.link_new_user_session:visited {
+  color: #26a69a;
+}
