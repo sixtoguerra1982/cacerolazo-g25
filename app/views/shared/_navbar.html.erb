@@ -32,6 +32,7 @@
 	<% if user_signed_in? %>
     	<li><%= link_to "Cerrar Sesion",destroy_user_session_path, method: :delete %></li>
     <% else %>
+    	<li><%= link_to "Registrate" , new_user_registration_path %></li>
     	<li><%= link_to "Iniciar sesión", new_user_session_path %></li>
 	<% end %>
 	<% if user_signed_in? %>
