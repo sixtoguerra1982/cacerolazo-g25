@@ -1,16 +1,39 @@
- <div class="wavy">
- 	<span style="--i:1;">O</span>
- 	<span style="--i:2;">l</span>
- 	<span style="--i:3;">l</span>
- 	<span style="--i:4;">a</span>
- 	<span style="--i:5;">&nbsp</span>
- 	<span style="--i:6;">C</span>
- 	<span style="--i:7;">o</span>
- 	<span style="--i:8;">m</span>
- 	<span style="--i:9;">ú</span>
- 	<span style="--i:10;">n</span>
- </div>
+<div class="row">
+	<div class="col s6">
+		<div class="wavy">
+		 	<span style="--i:1;">O</span>
+		 	<span style="--i:2;">l</span>
+		 	<span style="--i:3;">l</span>
+		 	<span style="--i:4;">a</span>
+		 	<span style="--i:5;">&nbsp</span>
+		 	<span style="--i:6;">C</span>
+		 	<span style="--i:7;">o</span>
+		 	<span style="--i:8;">m</span>
+		 	<span style="--i:9;">ú</span>
+		 	<span style="--i:10;">n</span>
+		 </div>
+	</div>
+	<div class="col s6">
 
+	    <audio id="listen" src="<%= asset_path("beep-07.mp3")%>">
+	        ERROR
+	    </audio>
+
+	    
+	    <div class="btn-play center">
+		   <div class="playpause">
+	    		<input type="checkbox" value="None" id="playpause" name="check" />
+	    		<label for="playpause" tabindex=1></label>
+	  		</div>
+	  		<div class="view-play">
+	  			<div id="titulosong"><i class="material-icons">music_video</i>cacerolazo.mp3<i class="material-icons">music_video</i></div>
+	  		</div>
+  		</div>
+	</div>
+<div>
+		
+	</div>
+</div>
 <div class="container">
 	<br>
 	<section>
@@ -109,6 +132,25 @@
  <script>
  	$(document).ready(function(){
      $('select').formSelect();
+
+   	 var hear = document.getElementById('listen');
+	 document.getElementById('playpause').addEventListener("click", function() {
+	 	var tituloSong = document.getElementById('titulosong')
+    	if(hear.paused) {
+    		tituloSong.style.color = "darkorange";
+    		tituloSong.classList.add("zoom");
+    		if (tituloSong.classList.contains('zoom-out')){
+    			tituloSong.classList.remove("zoom-out");	
+    		}
+        	hear.play();
+    	} else {
+    		tituloSong.classList.remove("zoom");
+    		tituloSong.classList.toggle("zoom-out");
+    		tituloSong.style.color = "black";
+        	hear.pause();
+    	}
+	 })
+
   	});
 
  	function ShowSelectedRegion(){
