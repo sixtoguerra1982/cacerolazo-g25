@@ -17,7 +17,7 @@ class EventosControllerTest < ActionDispatch::IntegrationTest
 
   test "should create evento" do
     assert_difference('Evento.count') do
-      post eventos_url, params: { evento: { comuna_id: @evento.comuna_id, descripcion: @evento.descripcion, dias_horarios: @evento.dias_horarios, direccion: @evento.direccion, encargado: @evento.encargado, organizacion: @evento.organizacion, organizador: @evento.organizador, photo: @evento.photo } }
+      post eventos_url, params: { evento: { comuna_id: @evento.comuna_id, descripcion: @evento.descripcion, dias_horarios: @evento.dias_horarios, direccion: @evento.direccion, encargado: @evento.encargado, organizacion: @evento.organizacion, organizador: @evento.organizador, photo: @evento.photo , image: @evento.image} }
     end
 
     assert_redirected_to evento_url(Evento.last)

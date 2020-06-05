@@ -37,9 +37,15 @@
 	<br>
 	<section>
 		<h5>Bienvenido:</h5>
-		<p>
-			En este sitio podrás buscar y publicar tu olla común, <%= link_to "registrate" , new_user_registration_path, class:"link_new_user_session" %> e ingresa tu evento de ayuda.
-		<p>
+		<% if ! user_signed_in? %>
+			<p>
+				En este sitio podrás <span class="link_new_user_session" id="link-cacerolear">cacerolear</span>, buscar y publicar tu olla común, <%= link_to "registrate" , new_user_registration_path, class:"link_new_user_session" %> e ingresa tu evento de ayuda.
+			<p>
+		<% else %>
+			<p>
+				En este sitio podrás <span class="link_new_user_session" id="link-cacerolear">cacerolear</span>, buscar y publicar tu olla común, <%= link_to "registrate" , new_user_registration_path, class:"link_new_user_session" %> e <%= link_to "ingresa tu evento", with_evento? ? evento_path(current_user.evento) : new_evento_path , class:"link_new_user_session" %> de ayuda.
+			<p>
+		<% end %>
 		</p>
 			En estos tiempos difíciles lo importante es ayudarnos entre todos, por lo mismo, por favor, que tu información sea verdadera ya que la necesidad puede llegar a todos.
 		</p>
@@ -131,25 +137,7 @@
  <script>
  	$(document).ready(function(){
      $('select').formSelect();
-
-   	 var hear = document.getElementById('listen');
-	 document.getElementById('playpause').addEventListener("click", function() {
-	 	var tituloSong = document.getElementById('titulosong')
-    	if(hear.paused) {
-    		tituloSong.style.color = "darkorange";
-    		tituloSong.classList.add("zoom");
-    		if (tituloSong.classList.contains('zoom-out')){
-    			tituloSong.classList.remove("zoom-out");	
-    		}
-        	hear.play();
-    	} else {
-    		tituloSong.classList.remove("zoom");
-    		tituloSong.classList.toggle("zoom-out");
-    		tituloSong.style.color = "black";
-        	hear.pause();
-    	}
-	 })
-
+	 document.getElementById('playpause').addEventListener("click",Music)
   	});
 
  	function ShowSelectedRegion(){
@@ -167,4 +155,33 @@
  		var comuna = parseInt(document.getElementById("comuna").value);
  		$('#search').attr("href","<%= home_index_path + '?comuna='%>" + comuna);
  	}
+
+ 	function Music(){
+ 		var hear = document.getElementById('listen');
+ 		var tituloSong = document.getElementById('titulosong')
+    	if(hear.paused) {
+    		tituloSong.style.color = "darkorange";
+    		tituloSong.classList.add("zoom");
+    		if (tituloSong.classList.contains('zoom-out')){
+    			tituloSong.classList.remove("zoom-out");	
+    		}
+        	hear.play();
+    	} else {
+    		tituloSong.classList.remove("zoom");
+    		tituloSong.classList.toggle("zoom-out");
+    		tituloSong.style.color = "black";
+        	hear.pause();
+    	}
+ 	}
+
+ 	$('#link-cacerolear').click(function(){
+ 		
+ 		if($('#playpause').prop('checked')){
+          $('#playpause').prop('checked', false);
+     	}else{
+          $('#playpause').prop('checked', true);
+     	}
+     	Music();
+ 		
+ 	});
  </script>

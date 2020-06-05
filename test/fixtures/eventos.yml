@@ -9,7 +9,7 @@ one:
   dias_horarios: MyText
   organizador: MyString
   photo: MyString
-
+  image: File
 two:
   comuna: two
   descripcion: MyText
@@ -19,3 +19,4 @@ two:
   dias_horarios: MyText
   organizador: MyString
   photo: MyString
+  image: File
