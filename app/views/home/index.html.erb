@@ -43,7 +43,7 @@
 			<p>
 		<% else %>
 			<p>
-				En este sitio podrás <span class="link_new_user_session" id="link-cacerolear">cacerolear</span>, buscar y publicar tu olla común, <%= link_to "registrate" , new_user_registration_path, class:"link_new_user_session" %> e <%= link_to "ingresa tu evento", with_evento? ? evento_path(current_user.evento) : new_evento_path , class:"link_new_user_session" %> de ayuda.
+				En este sitio podrás <span class="link_new_user_session" id="link-cacerolear">cacerolear</span>, buscar y publicar tu olla común, registrate e <%= link_to "ingresa tu evento", with_evento? ? evento_path(current_user.evento) : new_evento_path , class:"link_new_user_session" %> de ayuda.
 			<p>
 		<% end %>
 		</p>
