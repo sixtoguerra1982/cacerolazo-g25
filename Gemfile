@@ -75,3 +75,4 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem "aws-sdk-s3", "~> 1.66"
 gem 'font-awesome-sass', '~> 5.8.1'
 gem 'omniauth-facebook'
+gem 'rails-erd', group: :development
