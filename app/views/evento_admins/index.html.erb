@@ -1,0 +1,6 @@
+<%= render 'form' %>
+<div class="row">
+	<% @eventosadmin.each do |evento| %>
+		 <%= render 'evento', evento: evento %>
+	<% end %>
+</div>

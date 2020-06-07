@@ -1,0 +1,76 @@
+<div class="container">
+  <%= form_with(model: @eventoadmin, local: true) do |form| %>
+    <% if @eventoadmin.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@eventoadmin.errors.count, "error") %> prohibited this @eventoadmin from being saved:</h2>
+
+        <ul>
+        <% @eventoadmin.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="input-field">    
+      <i class="material-icons prefix">navigate_next</i>
+      <select id="comuna" name="comuna">
+      <% if @eventoadmin.comuna_id.nil? %>
+        <option value="" disabled selected></option>
+      <% end %>
+      <% Region.all.each do |r| %>
+        <optgroup label="<%= r.nombre %>">
+          <% r.comunas.each do |c| %>
+            <% if @eventoadmin.comuna_id.nil? %>
+              <option value="<%= c.id %>"><%= c.nombre %></option>
+            <% else %>
+              <option value="<%= c.id %>" <%= @eventoadmin.comuna_id == c.id ? 'selected' : '' %>><%= c.nombre %></option>
+            <% end %>
+          <% end %>
+        </optgroup>
+      <% end %>
+      </select>
+
+      <label>Seleccione Comuna</label>
+      <%= form.hidden_field :comuna_id %>  
+    </div>
+
+    <div class="input-field">
+      <i class="material-icons prefix">navigate_next</i>
+      <%= form.label :url %>
+      <%= form.url_field :url %>  
+    </div>
+
+    <div class="input-field">
+      <i class="material-icons prefix">navigate_next</i>
+      <%= form.label :photo %>
+      <%= form.url_field :photo %>  
+    </div>
+
+    <div class="input-field">
+      <i class="material-icons prefix">navigate_next</i>
+      <%= form.label :descripcion %>
+      <%= form.text_area :descripcion %>
+    </div>
+
+    <div class="actions">
+      <div class="row">
+        <div class="col s12 center">
+          <%= form.submit "Guardar" %>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+</div>
+
+<script>
+  $(document).ready(function(){
+     $('select').formSelect();
+     M.updateTextFields();
+     document.getElementById('comuna').addEventListener('change',ShowSelectedComuna,false);
+     function ShowSelectedComuna(){
+      var comuna = parseInt(document.getElementById("comuna").value);
+      $('#@eventoadmin_comuna_id').attr("value",comuna);
+     }
+    });
+</script>

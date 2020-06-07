@@ -6,6 +6,21 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 # Permite generar los seeds desde la carpeta
-Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].sort.each do |seed|
-  load seed
+#Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].sort.each do |seed|
+#  load seed
+#end
+
+puts "*** Cargando Eventos Admin..."
+EventoAdmin.destroy_all
+arr = [1,9,5,2,4,9,5,8,7,9,9,8,2,7,5,8,279,2,9]
+
+user = User.find_by(email: 'admin@admin.cl')
+10.times do 
+	EventoAdmin.create!(
+	  url: 'https://www.facebook.com/ollacomun.casacolores',
+	  descripcion: Faker::Company.catch_phrase ,
+	  photo: nil,
+	  comuna_id: arr[rand(arr.count)],
+	  user_id: user.id,
+	  )
 end

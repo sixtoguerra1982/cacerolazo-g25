@@ -1,0 +1,2 @@
+module EventoAdminsHelper
+end

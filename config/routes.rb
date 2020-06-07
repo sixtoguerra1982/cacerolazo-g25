@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  
+  resources :evento_admins, only: [:index, :create]
   devise_for :users
   
   resources :eventos

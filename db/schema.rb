@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_30_005718) do
+ActiveRecord::Schema.define(version: 2020_06_06_210817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,18 @@ ActiveRecord::Schema.define(version: 2020_05_30_005718) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["region_id"], name: "index_comunas_on_region_id"
+  end
+
+  create_table "evento_admins", force: :cascade do |t|
+    t.bigint "comuna_id"
+    t.text "url"
+    t.text "descripcion"
+    t.string "photo"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comuna_id"], name: "index_evento_admins_on_comuna_id"
+    t.index ["user_id"], name: "index_evento_admins_on_user_id"
   end
 
   create_table "eventos", force: :cascade do |t|
@@ -86,6 +98,8 @@ ActiveRecord::Schema.define(version: 2020_05_30_005718) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comunas", "regiones"
+  add_foreign_key "evento_admins", "comunas"
+  add_foreign_key "evento_admins", "users"
   add_foreign_key "eventos", "comunas"
   add_foreign_key "eventos", "users"
 end

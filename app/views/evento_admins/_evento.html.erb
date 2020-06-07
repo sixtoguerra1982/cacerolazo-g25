@@ -1,0 +1,26 @@
+<div class="col s6">
+	<div class="card">
+		<div class="card-image">
+		  <% if ! evento.photo.nil? %>
+			<%= image_tag e.image.variant(resize: "600x600").processed %>
+		  <% else %>
+		 	<%= image_tag 'default-image.jpg' %>
+		  <% end %>
+		  <span class="card-title"><%= evento.comuna.nombre %></span>
+		  
+		  <% if evento.pertenece_to_user(current_user) %>
+		  	
+		  	 <a class="btn-floating halfway-fab waves-effect waves-light red" href="<%= root_path %>"><i class="material-icons blue">edit</i></a>
+		  <% else %>
+		  	<a class="btn-floating halfway-fab waves-effect waves-light red" href="<%= evento.url %>" target="_blank"><i class="material-icons">add</i></a>
+		  <% end %>
+		</div>
+		<div class="card-content">
+		  <% if evento.present? %>
+		  	<%= raw evento.descripcion.capitalize %>
+		  <% else %>
+		  	<%= raw evento.descripcion.capitalize[0..30] + '...' %>
+		  <% end %>
+		</div>
+	</div>
+</div>
