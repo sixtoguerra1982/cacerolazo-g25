@@ -1,9 +1,6 @@
 class EventoAdminPolicy < ApplicationPolicy
-  def index?
-    return true if user.present? && user.admin?
-  end
-
-  def create
+  
+  def  create?
   	return true if user.present? && user.admin?
   end
  

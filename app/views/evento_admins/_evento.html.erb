@@ -2,7 +2,7 @@
 	<div class="card">
 		<div class="card-image">
 		  <% if ! evento.photo.nil? %>
-			<%= image_tag e.image.variant(resize: "600x600").processed %>
+			<%= image_tag evento.photo %>
 		  <% else %>
 		 	<%= image_tag 'default-image.jpg' %>
 		  <% end %>

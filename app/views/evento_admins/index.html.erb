@@ -1,4 +1,7 @@
-<%= render 'form' %>
+
+<% if user_signed_in? && current_user.admin? %>
+	<%= render 'form' %>
+<% end %>
 <div class="row">
 	<% @eventosadmin.each do |evento| %>
 		 <%= render 'evento', evento: evento %>
