@@ -2,7 +2,11 @@ class EventoAdminsController < ApplicationController
   before_action :authenticate_user!, only: [:create]
   def index
   	@eventosadmin = EventoAdmin.all
-  	@eventoadmin = EventoAdmin.new
+  	if params[:id].present?
+  		@eventoadmin = EventoAdmin.find(params[:id])
+  	else
+  		@eventoadmin = EventoAdmin.new
+  	end
   end
 
   def create
@@ -17,6 +21,32 @@ class EventoAdminsController < ApplicationController
       	@eventosadmin = EventoAdmin.all
         format.html { render :index }
       end
+    end
+  end
+
+  def edit
+  	@eventosadmin = EventoAdmin.all
+  	@eventoadmin = EventoAdmin.find(params[:id])
+  	render :index
+  end
+
+  def update
+  	@evento = EventoAdmin.find(params[:id])
+  	respond_to do |format|
+      if @evento.update(evento_params)
+        format.html { redirect_to evento_admins_path, notice: 'Evento was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
+
+  def destroy
+    @evento = EventoAdmin.find(params[:id])
+    authorize @evento
+    @evento.destroy
+    respond_to do |format|
+      format.html { redirect_to evento_admins_path, notice: 'Evento was successfully destroyed.' }
     end
   end
 

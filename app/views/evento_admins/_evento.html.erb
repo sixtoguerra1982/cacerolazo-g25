@@ -1,8 +1,8 @@
 <div class="col s6">
 	<div class="card">
 		<div class="card-image">
-		  <% if ! evento.photo.nil? %>
-			<%= image_tag evento.photo %>
+		  <% if ! evento.photo.blank? %>
+			<%= image_tag evento.photo, alt: evento.comuna.nombre %>
 		  <% else %>
 		 	<%= image_tag 'default-image.jpg' %>
 		  <% end %>
@@ -10,16 +10,24 @@
 		  
 		  <% if evento.pertenece_to_user(current_user) %>
 		  	
-		  	 <a class="btn-floating halfway-fab waves-effect waves-light red" href="<%= root_path %>"><i class="material-icons blue">edit</i></a>
+		  	 <a class="btn-floating halfway-fab waves-effect waves-light red" href="<%= edit_evento_admin_path(evento) %>"><i class="material-icons blue">edit</i></a>
+
 		  <% else %>
 		  	<a class="btn-floating halfway-fab waves-effect waves-light red" href="<%= evento.url %>" target="_blank"><i class="material-icons">add</i></a>
 		  <% end %>
 		</div>
+		
 		<div class="card-content">
 		  <% if evento.present? %>
-		  	<%= raw evento.descripcion.capitalize %>
+		  	<%= raw evento.descripcion %>
 		  <% else %>
-		  	<%= raw evento.descripcion.capitalize[0..30] + '...' %>
+		  	<%= raw evento.descripcion[0..30] + '...' %>
+		  <% end %>
+		  <% if user_signed_in? && current_user.admin? %>
+			  <div class="card-image">
+				
+				 <%= link_to '<i class="material-icons">delete</i>'.html_safe, evento_admin_path(evento), class: 'btn-floating btn-large red pulse',method: :delete, data: { confirm: 'Are you sure?' } %> 
+			  </div>
 		  <% end %>
 		</div>
 	</div>

@@ -4,7 +4,10 @@ class EventoAdminPolicy < ApplicationPolicy
   	return true if user.present? && user.admin?
   end
  
-
+  def destroy?
+  	return true if user.present? && user.admin?
+  end
+  
   private
  
     def evento
