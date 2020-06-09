@@ -3,12 +3,13 @@
 	<%= render 'form' %>
 <% end %>
 <div class="row">
-	<div class="col s8">
+	<div class="col s12">
 		<div>Sección Recolectados desde <i class="fab fa-facebook-square fa-2x" style="color:#385898;"></i></i>&nbsp;Facebook</a></div>
+		<div class="divider"></div>
 	</div>
 	<div class="col s12">
 		<% @eventosadmin.each do |evento| %>
-			 <%= render 'evento', evento: evento %>
+		  <%= render 'evento', evento: evento %>
 		<% end %>
 	</div>
 </div>
