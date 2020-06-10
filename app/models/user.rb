@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   enum role: [ :normal, :admin ]
   has_one :evento
-  has_many :eventoadmins
+  has_many :eventoAdmins
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
